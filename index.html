@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naim's-Bank</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="login-area">
+        <h1 class="text-center">Welcome to Naim's Bank</h1>
+        <div class="submit-area ">
+            <h4>Login</h4>
+            <input type="text" placeholder="Email" class="form-control mt-3">
+            <input type="password" placeholder="Password" class="form-control mt-3" name="" id="">
+            <button id="login" class="btn btn-success mt-3">Enter</button>
+        </div>
+    </div>
+    <!-- Transaction Area -->
+    <div id="transaction-area">
+        <!-- <h1>Transaction Area</h1> -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="deposit status">
+                    <h5>Deposit </h5>
+                    <h2>$ <span id="currentDeposit">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="withdraw status">
+                    <h5>Withdraw</h5>
+                    <h2>$00</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="balance status">
+                    <h5>Balance</h5>
+                    <h2>$00</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Deposit</h4>
+                    <input id="depositAmount" type="text" class="form-control"
+                        placeholder="$ amount you want to deposit">
+                    <br>
+                    <button id="addDeposit" class="btn btn-success">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Withdraw</h4>
+                    <input type="text" class="form-control" placeholder="$ amount you want to withdraw">
+                    <br>
+                    <button class="btn btn-success">Withdraw</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        //Login Button Event Handler
+        const loginBtn = document.getElementById('login');
+        loginBtn.addEventListener('click', function () {
+            const loginArea = document.getElementById('login-area');
+            loginArea.style.display = 'none';
+            const transactionArea = document.getElementById('transaction-area')
+            transactionArea.style.display = 'block';
+        })
+
+        //Deposit Button Event Handler
+        const depositBtn = document.getElementById('addDeposit');
+        depositBtn.addEventListener('click', function () {
+            const depositAmountValue = document.getElementById('depositAmount').value;
+            const depositNum = parseFloat(depositAmountValue);
+
+            const oldValue = document.getElementById('currentDeposit').innerText;
+            const oldValueNum  = parseFloat(oldValue);
+            const totalDeposit = oldValueNum + depositNum;
+            
+            document.getElementById('currentDeposit').innerText  = totalDeposit;
+            document.getElementById('depositAmount').value = "";
+
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>
