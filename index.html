@@ -34,7 +34,7 @@
             <div class="col-md-4">
                 <div class="withdraw status">
                     <h5>Withdraw</h5>
-                    <h2>$ <span id="">00</span></h2>
+                    <h2>$ <span id="currentWithdraw">00</span></h2>
                 </div>
             </div>
             <div class="col-md-4">
@@ -79,10 +79,10 @@
         //Deposit button event handler
         const depositBtn = document.getElementById('addDeposit');
         depositBtn.addEventListener('click', function () {
-            const depositNum = getInputNumber('depositAmount');
+            const depositNumber = getInputNumber('depositAmount');
             
-            updateSpanText('currentDeposit', depositNum);
-            updateSpanText('currentBalance', depositNum);
+            updateSpanText('currentDeposit', depositNumber);
+            updateSpanText('currentBalance', depositNumber);
 
             document.getElementById('depositAmount').value = "";
         })
@@ -90,8 +90,12 @@
         //Withdraw button event handler
         const withdrawBtn = document.getElementById('addWithdraw');
         withdrawBtn.addEventListener('click', function(){
-            const withdrawNum = getInputNumber('withdrawAmount');
-            console.log(withdrawNum);
+            const withdrawNumber = getInputNumber('withdrawAmount');
+
+            updateSpanText('currentWithdraw', withdrawNumber);
+            updateSpanText('currentBalance', -1* withdrawNumber);
+
+            document.getElementById('withdrawAmount').value = '';
         })
 
         function getInputNumber(id){
@@ -100,10 +104,10 @@
             return amountNumber;
         }
         
-        function updateSpanText(id, depositNum){
+        function updateSpanText(id, addedNumber){
             const current = document.getElementById(id).innerText;
             const currentNumber  = parseFloat(current);
-            const totalAmount = depositNum + currentNumber;            
+            const totalAmount = addedNumber + currentNumber;            
             document.getElementById(id).innerText = totalAmount;
         }
 
